@@ -1,25 +1,200 @@
+/* ===========================
+   Tema floral – Girasoles
+   =========================== */
 :root{
-  --bg:#0b1020; --fg:#e8f1ff; --muted:#a7b3c7;
-  --sun:#ffcf33; --petal:#ffd166; --leaf:#2ea37b;
-  --brand:#ffe27a; --accent:#44ffd1; --card:#11182f;
+  --bg:#0a0f1f;        /* noche */
+  --fg:#f0f6ff;
+  --muted:#bcd0e7;
+
+  --sun:#ffd257;       /* girasol */
+  --sun-2:#ffb703;
+  --leaf:#2ea37b;      /* hoja/verde */
+  --petal:#ffd166;     /* pétalo claro */
+
+  --accent:#44ffd1;    /* cian */
+  --brand:#ffe27a;     /* botón primario */
+  --card:#0f1630;
 }
+
+/* Base */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui}
-.container{max-width:940px;margin:auto;padding:20px}
-header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(11,16,32,.95),rgba(11,16,32,.75));border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+html,body{
+  margin:0;padding:0;
+  background:var(--bg);color:var(--fg);
+  font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial
+}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:980px;margin:auto;padding:20px}
+
+/* Header / nav */
+header{
+  position:sticky;top:0;z-index:10;
+  background:linear-gradient(180deg,rgba(10,15,31,.92),rgba(10,15,31,.72));
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(10px)
+}
 nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-nav .links a{padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;margin-left:6px}
-body::after{content:'';position:fixed;inset:-20%;z-index:-1;background-image:url('../img/sunflower.svg');background-size:220px 220px;background-repeat:repeat;opacity:.07;animation:drift 65s linear infinite}
+nav strong{letter-spacing:.2px}
+nav .links a{
+  padding:8px 12px;border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;margin-left:6px
+}
+nav .links a[aria-current="page"]{background:rgba(255,255,255,.06)}
+
+/* Fondo floral: gradientes + patrón SVG embebido */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #1b2647 0%, transparent 55%),
+    radial-gradient(900px 520px at -20% 110%, #18213f 0%, transparent 55%),
+    var(--bg);
+}
+body::after{
+  /* patrón combinado: girasol + margarita en data-URI */
+  content:"";position:fixed;inset:-15%;z-index:-1;
+  background-image:
+    url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 64 64'>\
+      <g transform='translate(18 20)'>\
+        <circle r='8' fill='%23ffcf33'/>\
+        <circle r='5' fill='%23a35b2e'/>\
+        <g fill='%23ffd166'>\
+          <ellipse rx='3.4' ry='8.6' transform='rotate(0) translate(0 -14)'/>\
+          <ellipse rx='3.4' ry='8.6' transform='rotate(30) translate(0 -14)'/>\
+          <ellipse rx='3.4' ry='8.6' transform='rotate(60) translate(0 -14)'/>\
+          <ellipse rx='3.4' ry='8.6' transform='rotate(90) translate(0 -14)'/>\
+          <ellipse rx='3.4' ry='8.6' transform='rotate(120) translate(0 -14)'/>\
+          <ellipse rx='3.4' ry='8.6' transform='rotate(150) translate(0 -14)'/>\
+        </g>\
+      </g>\
+      <g transform='translate(48 46)'>\
+        <circle r='6' fill='%23fff6e6'/>\
+        <g fill='%23fff6e6'>\
+          <ellipse rx='2.6' ry='6.6' transform='rotate(0) translate(0 -10)'/>\
+          <ellipse rx='2.6' ry='6.6' transform='rotate(45) translate(0 -10)'/>\
+          <ellipse rx='2.6' ry='6.6' transform='rotate(90) translate(0 -10)'/>\
+          <ellipse rx='2.6' ry='6.6' transform='rotate(135) translate(0 -10)'/>\
+        </g>\
+        <circle r='3.2' fill='%23ffd257'/>\
+      </g>\
+    </svg>");
+  background-size:220px 220px;
+  background-repeat:repeat;
+  opacity:.09; filter:saturate(1.1);
+  animation:drift 60s linear infinite
+}
 @keyframes drift{to{transform:translate3d(-8%,-8%,0)}}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px}
-h1{font-size:clamp(28px,6.2vw,44px)}
-.flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px}
-.input,select,button{background:#0e1533;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px}
-button{background:var(--brand);color:#2c2200;font-weight:700;cursor:pointer}
+
+/* Flores/pétalos flotando sutiles */
+@keyframes floatFlower{
+  0%{transform:translateY(0) rotate(0deg);opacity:.0}
+  10%{opacity:.35}
+  90%{opacity:.35}
+  100%{transform:translateY(-80vh) rotate(160deg);opacity:0}
+}
+.petal, .petal:before, .petal:after{position:fixed;z-index:-1;pointer-events:none}
+.petal{
+  width:18px;height:18px;left:10vw;bottom:-24px;border-radius:50%;
+  background:radial-gradient(circle at 40% 40%,#fff7,#fff0), #ffd166;
+  box-shadow:0 0 0 3px #0002 inset;filter:blur(.2px);
+  animation:floatFlower 18s linear infinite
+}
+.petal:nth-child(2){left:30vw;animation-duration:22s}
+.petal:nth-child(3){left:55vw;animation-duration:20s}
+.petal:nth-child(4){left:75vw;animation-duration:24s}
+.petal:nth-child(5){left:88vw;animation-duration:19s}
+
+/* Cards con borde degradado y glass */
+.card{
+  position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
+  border-radius:22px;padding:22px 20px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 24px 60px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.card::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;z-index:-1;
+  background:linear-gradient(145deg,rgba(255,210,87,.55),rgba(68,255,209,.35),rgba(122,167,255,.35));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  padding:1px; border-radius:inherit;
+}
+
+/* Títulos */
+h1{
+  margin:.3rem 0 .7rem;
+  font-size:clamp(30px,6.8vw,48px);
+  line-height:1.1;
+  background:linear-gradient(90deg,#fff,#ffe08a 60%,#ffd257);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+h1::after{
+  content:"  🌼🌻"; filter:drop-shadow(0 2px 0 #0002);
+}
+h2{font-size:clamp(20px,3.8vw,26px);margin:.2rem 0 1rem}
+.lead{color:var(--muted)}
+
+/* Texto pequeño */
+.note{color:var(--muted);font-size:14px;margin-top:8px}
+
+/* Formulario / botones */
+.flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.input, select{
+  appearance:none; background:#0e1533;color:var(--fg);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;padding:10px 12px; min-width:180px
+}
+select{
+  background-image:linear-gradient(45deg,transparent 50%,#9fb2cc 50%),linear-gradient(135deg,#9fb2cc 50%,transparent 50%);
+  background-position:calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+  background-size:6px 6px, 6px 6px; background-repeat:no-repeat;
+}
+button{
+  border:0;border-radius:14px;padding:10px 16px;cursor:pointer;
+  font-weight:800;letter-spacing:.2px
+}
+#enviar{
+  background:linear-gradient(180deg,#ffe27a,#ffcf33);
+  color:#2c2200; box-shadow:0 10px 28px #ffcf3333;
+}
+#enviar:hover{filter:brightness(1.06)}
+
 .choices{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.btn{border:0;border-radius:14px;padding:10px 14px;font-weight:700;cursor:pointer}
-.btn.yes{background:linear-gradient(180deg,#ffe27a,#ffcf33);color:#2c2200}
-.btn.no{background:#142040;color:#e8f1ff;border:1px solid rgba(255,255,255,.14)}
-.result{display:none;margin-top:14px;padding:12px;border-radius:14px;background:rgba(68,255,209,.1);border:1px solid rgba(68,255,209,.25)}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
-@media (max-width:640px){.flex{flex-direction:column}.input,select,button,.btn{width:100%}}
+.btn{
+  border:0;border-radius:999px;padding:12px 18px;
+  font-weight:800;cursor:pointer;transition:transform .08s ease, filter .2s ease
+}
+.btn:active{transform:translateY(1px)}
+.btn.yes{
+  background:linear-gradient(180deg,#ffe27a,#ffcf33);
+  color:#2c2200; box-shadow:0 14px 28px #ffcf3340, inset 0 -6px 14px #e3a60080
+}
+.btn.no{
+  background:#142040;color:#e8f1ff;border:1px solid rgba(255,255,255,.16)
+}
+
+/* Resultado */
+.result{
+  display:none;margin-top:14px;padding:14px;border-radius:14px;
+  background:linear-gradient(180deg,rgba(68,255,209,.14),rgba(68,255,209,.08));
+  border:1px solid rgba(68,255,209,.28)
+}
+
+/* Mascota girasol mini (para usar si quieres en algún rincón) */
+.sun-mini{
+  width:40px;height:40px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, var(--brand), var(--sun));
+  box-shadow:inset 0 -6px 12px #0004, 0 0 0 6px #0002
+}
+
+/* Responsive */
+@media (max-width:640px){
+  .container{padding:16px}
+  nav{flex-direction:column;align-items:flex-start;gap:8px}
+  nav .links a{margin-left:0}
+  .flex{flex-direction:column;align-items:stretch}
+  .input, select, button, .btn{width:100%}
+}
+
+/* Inserta algunas “pétalos” flotantes */
+body .petal:nth-of-type(n){display:block}
