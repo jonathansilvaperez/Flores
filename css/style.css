@@ -198,3 +198,75 @@ button{
 
 /* Inserta algunas “pétalos” flotantes */
 body .petal:nth-of-type(n){display:block}
+/* ======== Toggle de tema (botón) ======== */
+.theme-toggle{
+  margin-left:8px;
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(180deg,#1a2348,#121a36);
+  color:#ffd257;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:16px;
+  line-height:1;
+  cursor:pointer;
+  transition:filter .2s ease, transform .06s ease;
+}
+.theme-toggle:hover{ filter:brightness(1.06) }
+.theme-toggle:active{ transform:translateY(1px) }
+
+/* Transiciones suaves al cambiar tema */
+html, body, .card {
+  transition: background-color .30s ease, color .30s ease, border-color .30s ease, filter .30s ease;
+}
+
+/* ======== Tema claro (variables y fondos) ======== */
+/* Ponemos las variables en el body para que hereden al resto */
+body[data-theme="light"]{
+  --bg:#eaf4ff;        /* celeste suave */
+  --fg:#0d1326;
+  --muted:#5f6e88;
+
+  --sun:#ffcd3c;
+  --sun-2:#ffb703;
+  --leaf:#2ea37b;
+  --petal:#ffd166;
+
+  --accent:#0dbaa0;    /* cian más visible en claro */
+  --brand:#ffd34a;
+  --card:#ffffff;      /* tarjetas claras */
+}
+
+/* Fondos del modo claro (más luminosos, flores más visibles) */
+body[data-theme="light"]::before{
+  background:
+    radial-gradient(1100px 560px at 80% -10%, #cfe4ff 0%, transparent 55%),
+    radial-gradient(900px 520px at -20% 110%, #d5e9ff 0%, transparent 55%),
+    var(--bg);
+}
+body[data-theme="light"]::after{
+  opacity:.16;               /* subimos un poquito la visibilidad del patrón floral */
+  filter:saturate(1.15);
+}
+
+/* Ajustes suaves del contenido en claro */
+body[data-theme="light"] .card{
+  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.78));
+  border-color:rgba(30,60,120,.12);
+  box-shadow:0 18px 42px rgba(30,60,120,.15), inset 0 0 0 1px rgba(255,255,255,.5);
+}
+body[data-theme="light"] h1{
+  background:linear-gradient(90deg,#0d1326,#725d00 60%,#a27a00);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+body[data-theme="light"] #enviar{
+  background:linear-gradient(180deg,#ffe27a,#ffd34a);
+  color:#2c2200;
+}
+body[data-theme="light"] .btn.no{
+  background:#eaf0ff; color:#0d1326; border:1px solid rgba(20,40,120,.18);
+}
+body[data-theme="light"] .theme-toggle{
+  background:linear-gradient(180deg,#fff,#e9f0ff);
+  color:#c18c00; border-color:rgba(20,40,120,.18);
+}
+
