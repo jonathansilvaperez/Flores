@@ -6,6 +6,13 @@
   <title>¿Me perdonas? 🌻</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css"/>
+  <script>
+    // Aplicar tema lo antes posible para evitar parpadeo
+    try {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
 </head>
 
 <body>
@@ -39,7 +46,7 @@
     </section>
 
     <!-- Sección de perdón -->
-    <section class="card">
+    <section class="card" id="modulo-perdon">
       <h2>¿Me perdonas?</h2>
 
       <div class="choices">
