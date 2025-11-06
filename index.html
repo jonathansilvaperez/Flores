@@ -7,65 +7,68 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css"/>
 </head>
+
 <body>
-<header>
-  <div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-  <div class="container">
-    <nav>
+  <header>
+    <!-- pétalos animados -->
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+
+    <div class="container">
       <nav>
-  <strong>Girasoles</strong>
-  <div class="links">
-    <a href="index.html" aria-current="page">Inicio</a>
-    <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Cambiar tema">🌙</button>
-  </div>
-</nav>
-      <strong>Girasoles</strong>
-      <div class="links">
-        <a href="index.html" aria-current="page">Inicio</a>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main class="container">
-  <section class="hero card">
-    <h1>Perdón por lo ocurrido 🌻</h1>
-    <p class="lead">
-      Me equivoqué y quiero enmendarlo. Prometo escuchar, cuidar y mejorar cada día.
-      ¿Me das la oportunidad de hacerlo mejor?
-    </p>
-  </section>
-
-    <div class="choices">
-      <button class="btn yes" id="btnYes">Sí 💛</button>
-      <button class="btn no"  id="btnNo">No…</button>
+        <strong>Girasoles</strong>
+        <div class="links">
+          <a href="index.html" aria-current="page">Inicio</a>
+          <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Cambiar tema">🌙</button>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <div id="resultado" class="result" role="status" aria-live="polite"></div>
-    <p class="note">Puedes cambiar tu respuesta cuando quieras.</p>
-  </section>
+  <main class="container">
+    <!-- Sección principal -->
+    <section class="hero card">
+      <h1>Perdón por lo ocurrido 🌻</h1>
+      <p class="lead">
+        Me equivoqué y quiero enmendarlo. Prometo escuchar, cuidar y mejorar cada día.
+        ¿Me das la oportunidad de hacerlo mejor?
+      </p>
+    </section>
 
-  <section class="card tip">
-    <h3>Mi compromiso</h3>
-    <ul>
-      <li>Escucharte con el corazón abierto.</li>
-      <li>Hacerme cargo y reparar lo que haga falta.</li>
-      <li>Demostrar con hechos que puedo ser mejor.</li>
-    </ul>
-  </section>
-</main>
+    <!-- Sección de perdón -->
+    <section class="card">
+      <h2>¿Me perdonas?</h2>
 
-<footer>
-  <div class="container">
-    <small>Hecho con 🌻 por <strong>Jonathan Silva</strong> para pedir perdón de corazón.</small>
-  </div>
-</footer>
+      <div class="choices">
+        <button class="btn yes" id="btnYes">Sí 💛</button>
+        <button class="btn no" id="btnNo">No…</button>
+      </div>
 
-<canvas id="confetti"></canvas>
-<script src="js/script.js" defer></script>
+      <div id="resultado" class="result" role="status" aria-live="polite"></div>
+      <p class="note">Puedes cambiar tu respuesta cuando quieras.</p>
+    </section>
+
+    <!-- Sección compromiso -->
+    <section class="card tip">
+      <h3>Mi compromiso</h3>
+      <ul>
+        <li>Escucharte con el corazón abierto.</li>
+        <li>Hacerme cargo y reparar lo que haga falta.</li>
+        <li>Demostrar con hechos que puedo ser mejor.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>Hecho con 🌻 por <strong>Jonathan Silva</strong> para pedir perdón de corazón.</small>
+    </div>
+  </footer>
+
+  <canvas id="confetti"></canvas>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
