@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>¿Me perdonas? 🌻</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <strong>Girasoles</strong>
+      <div class="links">
+        <a href="index.html" aria-current="page">Inicio</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero card">
+    <h1>Perdón por lo ocurrido 🌻</h1>
+    <p class="lead">
+      Me equivoqué y quiero enmendarlo. Prometo escuchar, cuidar y mejorar cada día.
+      ¿Me das la oportunidad de hacerlo mejor?
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>¿Me perdonas?</h2>
+
+    <div class="flex">
+      <label for="respuesta">Selecciona una opción</label>
+      <select id="respuesta" class="input">
+        <option value="" selected>Elige…</option>
+        <option value="si">Sí, te perdono</option>
+        <option value="no">No, aún no</option>
+      </select>
+      <button id="enviar">Enviar</button>
+    </div>
+
+    <div class="choices">
+      <button class="btn yes" id="btnYes">Sí 💛</button>
+      <button class="btn no"  id="btnNo">No…</button>
+    </div>
+
+    <div id="resultado" class="result" role="status" aria-live="polite"></div>
+    <p class="note">Puedes cambiar tu respuesta cuando quieras.</p>
+  </section>
+
+  <section class="card tip">
+    <h3>Mi compromiso</h3>
+    <ul>
+      <li>Escucharte con el corazón abierto.</li>
+      <li>Hacerme cargo y reparar lo que haga falta.</li>
+      <li>Demostrar con hechos que puedo ser mejor.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <small>Hecho con 🌻 por <strong>Jonathan Silva</strong> para pedir perdón de corazón.</small>
+  </div>
+</footer>
+
+<canvas id="confetti"></canvas>
+<script src="js/script.js" defer></script>
+</body>
+</html>

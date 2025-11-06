@@ -1,0 +1,25 @@
+:root{
+  --bg:#0b1020; --fg:#e8f1ff; --muted:#a7b3c7;
+  --sun:#ffcf33; --petal:#ffd166; --leaf:#2ea37b;
+  --brand:#ffe27a; --accent:#44ffd1; --card:#11182f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui}
+.container{max-width:940px;margin:auto;padding:20px}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(11,16,32,.95),rgba(11,16,32,.75));border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+nav .links a{padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;margin-left:6px}
+body::after{content:'';position:fixed;inset:-20%;z-index:-1;background-image:url('../img/sunflower.svg');background-size:220px 220px;background-repeat:repeat;opacity:.07;animation:drift 65s linear infinite}
+@keyframes drift{to{transform:translate3d(-8%,-8%,0)}}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px}
+h1{font-size:clamp(28px,6.2vw,44px)}
+.flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.input,select,button{background:#0e1533;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px}
+button{background:var(--brand);color:#2c2200;font-weight:700;cursor:pointer}
+.choices{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.btn{border:0;border-radius:14px;padding:10px 14px;font-weight:700;cursor:pointer}
+.btn.yes{background:linear-gradient(180deg,#ffe27a,#ffcf33);color:#2c2200}
+.btn.no{background:#142040;color:#e8f1ff;border:1px solid rgba(255,255,255,.14)}
+.result{display:none;margin-top:14px;padding:12px;border-radius:14px;background:rgba(68,255,209,.1);border:1px solid rgba(68,255,209,.25)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
+@media (max-width:640px){.flex{flex-direction:column}.input,select,button,.btn{width:100%}}

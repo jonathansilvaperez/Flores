@@ -1,0 +1,17 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 64 64'>
+  <g transform='translate(32 36)'>
+    <circle r='10' fill='#ffcf33'/>
+    <circle r='6' fill='#a35b2e'/>
+    <g fill='#ffd166'>
+      <ellipse rx='4' ry='10' transform='rotate(0) translate(0 -18)'/>
+      <ellipse rx='4' ry='10' transform='rotate(30) translate(0 -18)'/>
+      <ellipse rx='4' ry='10' transform='rotate(60) translate(0 -18)'/>
+      <ellipse rx='4' ry='10' transform='rotate(90) translate(0 -18)'/>
+      <ellipse rx='4' ry='10' transform='rotate(120) translate(0 -18)'/>
+      <ellipse rx='4' ry='10' transform='rotate(150) translate(0 -18)'/>
+    </g>
+    <rect x='-2' y='10' width='4' height='14' rx='2' fill='#2ea37b'/>
+    <ellipse cx='-6' cy='14' rx='6' ry='3' fill='#2ea37b'/>
+    <ellipse cx='7' cy='18' rx='6' ry='3' fill='#2ea37b'/>
+  </g>
+</svg>
