@@ -1,11 +1,34 @@
 // ===== Guard: evita doble inicialización si el script se inyecta más de una vez =====
 if (window.__girasoles_loaded__) {
-  // Ya cargado: no hacemos nada
+  // Ya cargado
 } else {
   window.__girasoles_loaded__ = true;
 
   document.addEventListener("DOMContentLoaded", () => {
-    // ---------- Confeti (global, pero con guard de animación) ----------
+    // ---------- Toggle de tema (persistente) ----------
+    const toggle = document.getElementById("themeToggle");
+
+    function applyTheme(theme){
+      document.body.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      if (toggle){
+        const isLight = theme === "light";
+        toggle.setAttribute("aria-pressed", isLight ? "true" : "false");
+        toggle.textContent = isLight ? "🌞" : "🌙";
+      }
+    }
+
+    // Cargar preferencia guardada (default: dark)
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") applyTheme(saved);
+    else applyTheme("dark");
+
+    toggle?.addEventListener("click", ()=>{
+      const current = document.body.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(current);
+    });
+
+    // ---------- Confeti ----------
     const cvs = document.getElementById('confetti');
     const ctx = cvs.getContext('2d');
     let W=0, H=0, pieces=[], running=false, raf;
@@ -42,21 +65,18 @@ if (window.__girasoles_loaded__) {
       });
     }
 
-    // ---------- Encapsular lógica en la sección que contiene #respuesta ----------
+    // ---------- Lógica del módulo "¿Me perdonas?" ----------
     const selectEl = document.getElementById('respuesta');
-    if (!selectEl) return; // No hay módulo; salimos.
+    if (!selectEl) return; // no hay módulo
 
     const moduleSection = selectEl.closest('section.card') || document;
-    // Dentro de este módulo buscamos todo:
     const enviarBtn = moduleSection.querySelector('#enviar');
     const yesBtn    = moduleSection.querySelector('#btnYes');
     const noBtn     = moduleSection.querySelector('#btnNo');
 
-    // Limpiar duplicados de #resultado si existieran
+    // Limpieza defensiva si hubiera duplicados del resultado
     const resultados = moduleSection.querySelectorAll('#resultado');
-    if (resultados.length > 1) {
-      resultados.forEach((el,i)=>{ if (i>0) el.remove(); });
-    }
+    if (resultados.length > 1) resultados.forEach((el,i)=>{ if(i>0) el.remove(); });
     const out = moduleSection.querySelector('#resultado');
 
     function show(msg, good=false){
@@ -66,7 +86,6 @@ if (window.__girasoles_loaded__) {
       out.innerHTML = msg;
     }
 
-    // Click en Enviar
     enviarBtn?.addEventListener('click', ()=>{
       const v = selectEl.value;
       if (v === 'si') {
@@ -81,7 +100,6 @@ if (window.__girasoles_loaded__) {
       }
     });
 
-    // Botones grandes: actualizan el select y reutilizan la lógica
     yesBtn?.addEventListener('click', ()=>{ selectEl.value = 'si'; enviarBtn?.click(); });
     noBtn?.addEventListener('click',  ()=>{ selectEl.value = 'no'; enviarBtn?.click(); });
   });
